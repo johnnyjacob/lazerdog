@@ -22,32 +22,35 @@
 
 from subprocess import call
 from time import sleep
+from panandtilt import Panandtilt
+from laser import Laser
 
-import panandtilt as Panandtilt
-import lazer
+head = Panandtilt(5, 150, 6, 150)
+head.servo_reset_position
 
-control = Panandtilt()
-control.servo_reset_position
+point = Laser (8)
+point.on()
+
 for x in range(0,100):
-    print control.pan_current_position
-    print control.tilt_current_position
-    control.pan_left(1)
+    print head.pan_current_position
+    print head.tilt_current_position
+    head.pan_left(1)
     sleep(0.01)
 
 for x in range(0,100):
-    print control.pan_current_position
-    print control.tilt_current_position
-    control.pan_right(1)
+    print head.pan_current_position
+    print head.tilt_current_position
+    head.pan_right(1)
     sleep(0.01)
 
 for x in range(0,100):
-    print control.pan_current_position
-    print control.tilt_current_position
-    control.tilt_up(1)
+    print head.pan_current_position
+    print head.tilt_current_position
+    head.tilt_up(1)
     sleep(0.01)
 
 for x in range(0,100):
-    print control.pan_current_position
-    print control.tilt_current_position
-    control.tilt_down(1)
+    print head.pan_current_position
+    print head.tilt_current_position
+    head.tilt_down(1)
     sleep(0.01)
