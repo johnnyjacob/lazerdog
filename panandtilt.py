@@ -39,7 +39,7 @@ class Panandtilt:
 
     def servo_reset_position(self):
         Panandtilt.pan_current_position = Panandtilt.pan_default_position
-        self.servo_control(Panandtilt.pan_servo, pan_default_position)
+        self.servo_control(Panandtilt.pan_servo, Panandtilt.pan_default_position)
 
         Panandtilt.tilt_current_position = Panandtilt.tilt_default_position
         self.servo_control(Panandtilt.tilt_servo, Panandtilt.tilt_default_position)
@@ -60,8 +60,11 @@ class Panandtilt:
         Panandtilt.tilt_current_position = Panandtilt.tilt_current_position - increment
         self.servo_control(Panandtilt.tilt_servo, Panandtilt.tilt_current_position)
 
+    def init_servoblaster(self):
+        call(["servod --p1pins=0,0,0,0,0,16,18,0"],shell=True)
+
     
     def __init__(self, pan_servo, pan_default, tilt_servo, tilt_default):
-        Panandtilt.pan_default_position = self.pan_default
-        Panandtilt.tilt_default_position = self.tilt_default
+        Panandtilt.pan_default_position = pan_default
+        Panandtilt.tilt_default_position = tilt_default
         self.servo_reset_position()
