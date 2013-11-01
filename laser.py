@@ -22,15 +22,15 @@
 
 import RPi.GPIO as GPIO
 
-class Lazer:
-    lazer_gpio = 0
+class Laser:
+    laser_gpio = 0
 
     def on(self):
-        GPIO.output (Lazer.lazer_gpio, True)
+        GPIO.output (Laser.laser_gpio, True)
 
     def off(self):
-        GPIO.output (Lazer.lazer_gpio, False)
+        GPIO.output (Laser.laser_gpio, False)
 
     def __init__(self, gpio):
-        Lazer.lazer_gpio = gpio
+        Laser.laser_gpio = gpio
         GPIO.setup(gpio, GPIO.OUT)
