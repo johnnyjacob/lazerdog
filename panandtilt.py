@@ -20,6 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+from subprocess import call
+from time import sleep
+
 class Panandtilt:
     pan_servo = 5
     tilt_servo = 6
