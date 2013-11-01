@@ -19,3 +19,18 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+import RPi.GPIO as GPIO
+
+class Lazer:
+    lazer_gpio = 0
+
+    def on(self):
+        GPIO.output (Lazer.lazer_gpio, True)
+
+    def off(self):
+        GPIO.output (Lazer.lazer_gpio, False)
+
+    def __init__(self, gpio):
+        Lazer.lazer_gpio = gpio
+        GPIO.setup(gpio, GPIO.OUT)
