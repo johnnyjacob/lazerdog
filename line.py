@@ -20,43 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-class Line:
-    x0 = 0
-    y0 = 0
+def line(x0, y0, x1, y1):
+    x = 0
+    y = y0
+    dx = x1 - x0
+    dy = y1 - y0
+    D = (2*dy) - dx
 
-    x1 = 0
-    y1 = 0
+    yield x0, y0
+    for x in range(x0+1, x1+1):
+        if (D > 0) :
+            y = y +1 
+            yield x, y
+            D = D + (2*dy - 2*dx)
+        else:
+            yield x, y
+            D = D + (2*dy)
 
-    dx = 0
-    dy = 0
-
-    D = 0
-
-    def plot(self, x, y):
-        print x,y
-
-    def next(self):
-        x = 0
-        y = self.y0
-        self.D = (2*self.dy) - self.dx
-        self.plot (self.x0, self.y0)
-        for x in range(self.x0+1, self.x1+1):
-            if (self.D > 0) :
-                y = y +1 
-                self.plot (x, y)
-                self.D = self.D + (2*self.dy - 2*self.dx)
-            else:
-                self.plot (x, y)
-                self.D = self.D + (2*self.dy)
-
-    def __init__(self, x0, y0, x1, y1):
-        Line.x0 = x0
-        Line.y0 = y0
-        Line.x1 = x1
-        Line.y1 = y1
-        
-        Line.dx = x1 - x0
-        Line.dy = y1 - y0
-
-l  = Line (0,1,6,4)
-l.next()
+for x,y in line (1,0,6,4):
+    print x,y
