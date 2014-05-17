@@ -20,6 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+# Line algorithm from : http://en.wikipedia.org/wiki/Bresenham's_line_algorithm
+
 def line(x0, y0, x1, y1):
     x = 0
     y = y0
