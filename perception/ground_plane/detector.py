@@ -21,16 +21,29 @@
 # THE SOFTWARE.
 
 import cv2
-import numpy
+#import numpy
 from apriltag import apriltag
 
 TAGTYPE = 'tagStandard41h12'
 imagepath = '/home/jony/Pictures/tag-detect-test.png'
+BBCOLOR = 255,0,255
+FONT = cv2.FONT_HERSHEY_SIMPLEX 
 
 if __name__ == '__main__':
     tag_detector = apriltag(TAGTYPE)
-    image = cv2.imread(imagepath, cv2.IMREAD_GRAYSCALE)
-    detections = tag_detector.detect(image)
+    image = cv2.imread(imagepath)
+    greys = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    detections = tag_detector.detect(greys)
+
     for det in detections:
-        print (det)
+        rect = det["lb-rb-rt-lt"].astype(int).reshape((-1,1,2))
+        cv2.polylines(image, [rect], True, BBCOLOR, 2)
+
+        ident = str(det["id"])
+        pos = det["center"].astype(int) + (-10,10)
+        cv2.putText(image, ident, tuple(pos), FONT, 1, BBCOLOR, 2)
+
+        cv2.imshow ("Detections" , image)
+        cv2.waitKey(0)
+    
     
